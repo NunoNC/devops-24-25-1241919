@@ -33,17 +33,19 @@ public class Employee {
 	private String lastName;
 	private String description;
 	private int jobYears;
+	private String email;
 
 	protected Employee() {}
 
-	public Employee(String firstName, String lastName, String description, int jobYears) throws IllegalArgumentException {
-		if (!validParameters(firstName) || (!validParameters(lastName)) || (!validParameters(description)) || (!validJobYears(jobYears))) {
+	public Employee(String firstName, String lastName, String description, int jobYears, String email) throws IllegalArgumentException {
+		if (!validParameters(firstName) || (!validParameters(lastName)) || (!validParameters(description)) || (!validJobYears(jobYears)) || (!validEmail(email))) {
 			throw new IllegalArgumentException("Invalid parameter");
 		}
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.description = description;
 		this.jobYears = jobYears;
+		this.email = email;
 	}
 
 	@Override
@@ -55,13 +57,14 @@ public class Employee {
 			Objects.equals(firstName, employee.firstName) &&
 			Objects.equals(lastName, employee.lastName) &&
 			Objects.equals(description, employee.description) &&
-			Objects.equals(jobYears, employee.jobYears);
+			Objects.equals(jobYears, employee.jobYears) &&
+			Objects.equals(email, employee.email);
 	}
 
 	@Override
 	public int hashCode() {
 
-		return Objects.hash(id, firstName, lastName, description, jobYears);
+		return Objects.hash(id, firstName, lastName, description, jobYears, email);
 	}
 
 	public Long getId() {
@@ -101,10 +104,15 @@ public class Employee {
 	}
 
 	public void setJobYears(int jobYears) {
-		if (!validJobYears(jobYears)) {
-			throw new IllegalArgumentException("Invalid parameter");
-		}
 		this.jobYears = jobYears;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	private boolean validJobYears(int jobYears) {
@@ -115,6 +123,10 @@ public class Employee {
 		return parameters != null && !parameters.isEmpty();
 	}
 
+	private boolean validEmail(String email) {
+		return email != null && email.contains("@");
+	}
+
 	@Override
 	public String toString() {
 		return "Employee{" +
@@ -123,6 +135,7 @@ public class Employee {
 			", lastName='" + lastName + '\'' +
 			", description='" + description + '\'' +
 			", jobYears='" + jobYears + '\'' +
+			", email='" + email + '\'' +
 			'}';
 	}
 }
