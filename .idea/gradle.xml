@@ -14,6 +14,17 @@
       <GradleProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$/CA1/part2/gradle_basic_demo/src" />
       </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/CA1/part3/react-and-spring-data-rest-basic" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/CA1/part3/react-and-spring-data-rest-basic" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/CA1/part3/react-and-spring-data-rest-basic/src/main/java" />
+      </GradleProjectSettings>
     </option>
   </component>
 </project>
