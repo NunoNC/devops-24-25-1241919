@@ -9,6 +9,11 @@
         <module name="react-and-spring-data-rest-basic" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="basic_demo.main" target="17" />
+      <module name="basic_demo.test" target="17" />
+      <module name="devops-24-25-1241919" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
