@@ -48,4 +48,4 @@ task copyJar(type: Copy) {
 task cleanWebpack(type: Delete) {
 	delete 'src/main/resources/static/built'
 }
-clean.dependsOn cgleanWebpack
+clean.dependsOn cleanWebpack
