@@ -2,8 +2,6 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
-      <module name="basic_demo.main" target="17" />
-      <module name="basic_demo.test" target="17" />
       <module name="devops-24-25-1241919" target="17" />
     </bytecodeTargetLevel>
   </component>
