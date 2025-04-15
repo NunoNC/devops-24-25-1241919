@@ -7,7 +7,6 @@ Vagrant.configure("2") do |config|
   # This provision is common for both VMs
   config.vm.provision "shell", inline: <<-SHELL
     sudo apt-get update -y
-    sudo apt-get install -y tomcat9 tomcat9-admin
     sudo apt-get install -y iputils-ping avahi-daemon libnss-mdns unzip \
         openjdk-17-jdk-headless
     # ifconfig
@@ -18,7 +17,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "db" do |db|
     db.vm.box = "ubuntu/bionic64"
     db.vm.hostname = "db"
-    db.vm.network "private_network", ip: "192.168.56.11"
+    db.vm.network "private_network", ip: "192.168.33.11"
 
     # We want to access H2 console from the host using port 8082
     # We want to connet to the H2 server using port 9092
@@ -48,8 +47,10 @@ Vagrant.configure("2") do |config|
         # Sync the host's SSH key folder into the VM (read-only)
         web.vm.synced_folder "~/.ssh", "/home/vagrant/.ssh_host", type: "virtualbox"
 
-        # Enable SSH agent forwarding (optional)
-        web.ssh.forward_agent = true
+     # We set more ram memmory for this VM
+        web.vm.provider "virtualbox" do |v|
+          v.memory = 1024
+        end
 
         # Provisioning script for the web VM
         web.vm.provision "shell", privileged: false, inline: <<-SHELL
@@ -61,7 +62,7 @@ Vagrant.configure("2") do |config|
           ssh-keyscan github.com >> ~/.ssh/known_hosts
 
           # Clone the repository only if it doesn't exist
-          if [ ! -d "devops-24-25-1241919" ]; then
+          if [ ! -d "devops-24-25-1241911" ]; then
             git clone git@github.com:NunoNC/devops-24-25-1241919.git
           fi
 
@@ -69,8 +70,9 @@ Vagrant.configure("2") do |config|
           chmod u+x gradlew
           ./gradlew clean build
           ./gradlew bootRun
+
           # Deploy the WAR to Tomcat
           sudo cp ./build/libs/react-and-spring-data-rest-basic-0.0.1-SNAPSHOT.jar /var/lib/tomcat9/webapps
         SHELL
-      end
-    end
+ end
+end
