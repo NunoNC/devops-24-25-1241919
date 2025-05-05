@@ -1,0 +1,13 @@
+# Runtime image using a slim JRE
+FROM eclipse-temurin:17-jre
+
+WORKDIR /app
+
+# Copy the .jar file from CA1 to the Docker image
+COPY ../../../../CA1/part2/gradle_basic_demo/build/libs/basic_demo-0.1.0.jar ./basic_demo-0.1.0.jar
+
+# Expose port 59001
+EXPOSE 59001
+
+# Set the entrypoint to run the ChatServerApp
+ENTRYPOINT ["java", "-cp", "basic_demo-0.1.0.jar", "basic_demo.ChatServerApp", "59001"]
