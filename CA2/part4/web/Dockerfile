@@ -16,7 +16,7 @@ WORKDIR /usr/src/app/CA1/part3/react-and-spring-data-rest-basic
 
 RUN chmod +x gradlew \
     && ./gradlew bootWar \
-    && cp build/libs/react-and-spring-data-rest-basic-0.0.1-SNAPSHOT-plain.war /usr/local/tomcat/webapps/basic-0.0.1-SNAPSHOT.war
+    && cp build/libs/*.war /usr/local/tomcat/webapps/basic.war
 
 
 EXPOSE 8080
