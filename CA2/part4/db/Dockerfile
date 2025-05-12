@@ -1,9 +1,9 @@
 FROM ubuntu:latest
 
 RUN apt-get update && \
-    apt-get install -y openjdk-11-jdk-headless && \
-    apt-get install unzip -y && \
-    apt-get install wget -y
+apt-get install -y openjdk-11-jdk-headless && \
+apt-get install unzip -y && \
+apt-get install wget -y
 
 RUN mkdir -p /usr/src/app
 
