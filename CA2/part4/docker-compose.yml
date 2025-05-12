@@ -1,17 +1,4 @@
-version: '3.8'
-
 services:
-  db:
-    build: ./db
-    ports:
-      - "9092:9092"
-      - "8082:8082"
-    volumes:
-      - ./data:/usr/src/data-backup
-    networks:
-      my_custom_network:
-        ipv4_address: 192.168.56.11
-
   web:
     build: ./web
     ports:
@@ -22,12 +9,23 @@ services:
     depends_on:
       - db
 
-volumes:
-  db_data: {}
+  db:
+    build: ./db
+    ports:
+      - "8082:8082"
+      - "9092:9092"
+    volumes:
+      - ./data:/usr/src/data-backup
+    networks:
+      my_custom_network:
+        ipv4_address: 192.168.56.11
 
 networks:
   my_custom_network:
     driver: bridge
     ipam:
       config:
-      - subnet: "192.168.56.0/24"
+        - subnet: "192.168.56.0/24"
+
+volumes:
+  db_data: {}
