@@ -422,15 +422,15 @@ This command initiated the VMs and provisioned them based on the configurations 
 
 Once the VMs were running, I visited http://localhost:8080/basic-0.0.1-SNAPSHOT/ in my web browser to verify that the Spring Boot application was functioning properly. Below is a screenshot of the outcome:
 
-<img src="https://i.postimg.cc/MGZ7GHwv/Screenshot-2024-05-13-at-17-25-28.png" width="800"/>
+[![Captura-de-ecr-2025-05-19-111818.png](https://i.postimg.cc/YSnK6f6v/Captura-de-ecr-2025-05-19-111818.png)](https://postimg.cc/NyHzYXPt)
 
-I also accessed the H2 console by navigating to http://localhost:8082/h2-console and connected to the H2 database using the JDBC URL `jdbc:h2:tcp://192.168.56.11:9092/./jpadb`. Below is a screenshot of the H2 Login page, where I entered the connection details:
+I also accessed the H2 console by navigating to http://localhost:8082/ and connected to the H2 database using the JDBC URL `jdbc:h2:tcp://192.168.56.11:9092/./jpadb`. Below is a screenshot of the H2 Login page, where I entered the connection details:
 
-<img src="https://i.postimg.cc/rwwHB8HN/Screenshot-2024-05-13-at-17-25-42.png" width="800"/>
+[![Captura-de-ecr-2025-05-19-112217.png](https://i.postimg.cc/3x8ct0Jm/Captura-de-ecr-2025-05-19-112217.png)](https://postimg.cc/tYckTT64)
 
 After connecting to the H2 database, I was able to view the tables and data stored within it. This configuration enabled smooth interaction between the Spring Boot application and the H2 database. Below is a screenshot of the H2 console displaying the `EMPLOYEE` database table:
 
-<img src="https://i.postimg.cc/0jwfRNRr/Screenshot-2024-05-13-at-17-25-59.png" width="800"/>
+[![Captura-de-ecr-2025-05-19-112122.png](https://i.postimg.cc/J4WgBdfT/Captura-de-ecr-2025-05-19-112122.png)](https://postimg.cc/LhNvcv6f)
 
 These steps verified that the Spring Boot application was operating correctly and could interact with the H2 database.
 
@@ -527,7 +527,7 @@ The assignment is structured into two versions:
 
 ## Environment Setup
 
-To begin working with Docker and the chat server from CA2, I first verified that Docker was installed on my system. In addition, I needed access to the chat server repository hosted on Bitbucket, which contains the basic Gradle-based application developed during `CA1`. 
+To begin working with Docker and the chat server from `CA2`, I first verified that Docker was installed on my system. In addition, I needed access to the chat server repository hosted on Bitbucket, which contains the basic Gradle-based application developed during `CA1`. 
 The repository can be cloned using the following command:
 
 ```bash
@@ -582,19 +582,18 @@ The `-t` flag tags the image with a name and version. In this case, the image is
 ```
 
 Here is the output of the command, displaying the newly created Docker image:
-  
-<img src="https://i.postimg.cc/zXh7TS6S/Screenshot-2024-06-01-at-15-29-52.png" alt="Docker images" width="600"/>
 
+[![Captura-de-ecr-2025-05-19-112541.png](https://i.postimg.cc/dtq6FPPK/Captura-de-ecr-2025-05-19-112541.png)](https://postimg.cc/K4HB7W89)
 
 6. I started the Docker container with the following command:
  
 ```bash
-    docker run -p 59001:59001 nunonelascruz/chat-server:version1 .
+    docker run -p 59001:59001 nunonelascruz/chat-server:version1 
 ```
 
 The -p flag maps the host port to the container port. In this case, it maps port 59001 on the host to port 59001 on the container. Below is the output of the command, which shows the Docker container running the chat server:
 
-<img src="https://i.postimg.cc/g2PDsLP9/Screenshot-2024-06-01-at-15-35-07.png" alt="Docker run" width="600">
+[![Captura-de-ecr-2025-05-19-114338.png](https://i.postimg.cc/LsTfNh5Y/Captura-de-ecr-2025-05-19-114338.png)](https://postimg.cc/SXnJKSWk)
 
 7. In a new terminal window, I navigated to the directory containing the chat client and executed the following commands to build and launch the chat client:
 
@@ -603,24 +602,23 @@ The -p flag maps the host port to the container port. In this case, it maps port
     ./gradlew runClient
  ```
 
-
 8. I tested the chat functionality by connecting to the chat server with two different clients. Below is the output from one of the clients connected to the chat server running in the Docker container, displaying a sample message:
 
-<img src="https://i.postimg.cc/7ZMNWPx5/Screenshot-2024-06-01-at-17-45-38.png" alt="Chat Clients" width="500">
+[![Captura-de-ecr-2025-05-19-114215.png](https://i.postimg.cc/kMhQ0VcW/Captura-de-ecr-2025-05-19-114215.png)](https://postimg.cc/hhTQxtNG)
 
 In the terminal where the Docker container was running, I observed the connections and disconnections of new clients on the chat server.
 
-<img src="https://i.postimg.cc/jjxh0V5Z/Screenshot-2024-06-01-at-17-48-31.png" alt="Chat Server" width="600">
+[![Captura-de-ecr-2025-05-19-114417.png](https://i.postimg.cc/D0WXvggL/Captura-de-ecr-2025-05-19-114417.png)](https://postimg.cc/fSNL5Y1R)
 
 9. Finally, I uploaded the Docker image to Docker Hub using the following command:
 
 ```bash
-    docker push nunonelascruz/chat-server:version1 .
+    docker push nunonelascruz/chat-server:version1 
 ```
 
 The image was successfully pushed to the Docker Hub repository and is now available for use, as displayed in the image below:
 
-<img src="https://i.postimg.cc/fb8fMHSZ/Screenshot-2024-06-01-at-18-49-22.png" alt="Docker Hub image" width="500">
+[![Captura-de-ecr-2025-05-19-114501.png](https://i.postimg.cc/c4nnPF6N/Captura-de-ecr-2025-05-19-114501.png)](https://postimg.cc/fJMy9jxH)
 
 ## Dockerfile - version 2
 
@@ -641,7 +639,7 @@ This resulted in the creation of the basic_demo-0.1.0.jar file in the build/libs
 
 ```dockerfile
 # Runtime image using a slim JRE
-FROM eclipse-temurin:17-jre
+FROM eclipse-temurin:21-jre
 
 WORKDIR /app
 
@@ -660,7 +658,7 @@ This Dockerfile is more straightforward than the previous one, as it doesn't req
 4. I created the Docker image by running the following command:
 
 ```bash
-    docker build -f Dockerfile -t nunonelascruz/chat-server:version2 ../../..
+    docker build -f DockerfileV2 -t nunonelascruz/chat-server:version2 ../../..
 ```
 
 The -f flag specifies the Dockerfile to use for the build, while ../../.. sets the build context to three levels up from the current directory, ensuring all required files are available during the build process.
@@ -674,7 +672,7 @@ The -t flag tags the image with a name and version. In this case, the image is t
 
 Here is the output of the command, displaying the newly created Docker image:
 
-<img src="https://i.postimg.cc/135Kbh4M/Screenshot-2024-06-01-at-18-26-46.png" alt="Docker images" width="600"/>
+[![Captura-de-ecr-2025-05-19-115409.png](https://i.postimg.cc/GmNhrCf7/Captura-de-ecr-2025-05-19-115409.png)](https://postimg.cc/RW7zQj4K)
 
 6. I started the Docker container with the following command:
 
@@ -684,7 +682,7 @@ Here is the output of the command, displaying the newly created Docker image:
 
 Here is the output of the command, indicating that the Docker container is running the chat server:
 
-<img src="https://i.postimg.cc/cHMgsCb3/Screenshot-2024-06-01-at-18-40-27.png" alt="Docker run" width="600"/>
+[![Captura-de-ecr-2025-05-19-115637.png](https://i.postimg.cc/KvpmrbmG/Captura-de-ecr-2025-05-19-115637.png)](https://postimg.cc/nC78p6sg)
 
 7. I navigated to the directory containing the chat client and executed the following commands to run it:
 
@@ -694,11 +692,11 @@ Here is the output of the command, indicating that the Docker container is runni
 
 I launched two clients in separate terminals to test the chat functionality. Below is the output from the chat:
 
-<img src="https://i.postimg.cc/Yqy42Jbd/Screenshot-2024-06-01-at-18-43-29.png" alt="Chat Clients" width="500"/>
+[![Captura-de-ecr-2025-05-19-115856.png](https://i.postimg.cc/MKL8fYYX/Captura-de-ecr-2025-05-19-115856.png)](https://postimg.cc/Xp9PTdm0)
 
 In the terminal where the Docker container was running, I observed the connections and disconnections of new clients in the chat:
 
-<img src="https://i.postimg.cc/wjy110rg/Screenshot-2024-06-01-at-18-44-09.png" alt="Chat Server" width="600"/>
+[![Captura-de-ecr-2025-05-19-115928.png](https://i.postimg.cc/Lstd7FFZ/Captura-de-ecr-2025-05-19-115928.png)](https://postimg.cc/06yHM3Q8)
 
 8. Finally, I uploaded the Docker image to Docker Hub using the following command:
 
@@ -708,11 +706,11 @@ In the terminal where the Docker container was running, I observed the connectio
 
 The image was successfully pushed to the Docker Hub repository and is now available for use, as shown in the image below:
 
-<img src="https://i.postimg.cc/mr7hwhRn/Screenshot-2024-06-01-at-18-48-57.png" alt="Docker Hub image" width="500"/>
+[![Captura-de-ecr-2025-05-19-120046.png](https://i.postimg.cc/B6prS56S/Captura-de-ecr-2025-05-19-120046.png)](https://postimg.cc/2bqcTZhM)
 
 ## Conclusion
 
-In this assignment, I successfully containerized a chat server application using Docker. By following the outlined steps, I created two versions of the Docker image. The first version involved building the application directly within the Dockerfile, while the second version built the application on the host machine and copied the resulting JAR file into the Docker image. Both approaches showcased Docker's flexibility and effectiveness in managing and deploying applications consistently across different environments.
+In this assignment, I successfully containerized a chat server application using Docker. By following the outlined steps, I created two versions of the Docker image. The first version involved building the application directly within the `Dockerfile`, while the second version built the application on the host machine and copied the resulting JAR file into the Docker image. Both approaches showcased Docker's flexibility and effectiveness in managing and deploying applications consistently across different environments.
 
 
 ## Introduction
@@ -861,9 +859,9 @@ And the H2 database console at:
 
 Below are screenshots demonstrating successful access to both the web application and the H2 database console:
 
-<img src="https://i.postimg.cc/76Wrygyh/Screenshot-2024-06-02-at-21-30-19.png" alt="Web Application" width="600">
+[![Captura-de-ecr-2025-05-12-123645.png](https://i.postimg.cc/MZsCgYNt/Captura-de-ecr-2025-05-12-123645.png)](https://postimg.cc/4n929pJh)
 
-<img src="https://i.postimg.cc/BvtG7hdk/Screenshot-2024-06-02-at-21-43-37.png" alt="H2 Database Console" width="600">
+[![Captura-de-ecr-2025-05-12-123651.png](https://i.postimg.cc/fTJGs9hs/Captura-de-ecr-2025-05-12-123651.png)](https://postimg.cc/3dQSCWRf)
 
 ## Tag and Push Images
 
@@ -883,38 +881,26 @@ docker tag part4-web:latest nunonelascruz/part4-web:latest
 docker tag part4-db:latest nunonelascruz/part4-db:latest
 ```
 
-These commands labeled the part2-web image with the web tag and the part2-db image with the db tag, as confirmed by the output from the docker images command.
-
-<img src="https://i.postimg.cc/sXXC8Tqb/Screenshot-2024-06-02-at-22-10-48.png" alt="Docker images" width="600">
-
-Prior to uploading the images, I authenticated with my Docker Hub account using the following command:
-
-```bash
-docker login
-```
-
-Lastly, I uploaded the tagged images to my Docker Hub repository by executing the following commands:
+These commands labeled the `part2-web` image with the web tag and the `part2-db` image with the db tag, as confirmed by the output from the docker images command.
 
 ```bash
 docker push nunonelascruz/part2-web:web
 docker push nunonelascruz/part2-db:db
 ```
 
-These commands successfully pushed the part2-web image tagged as web and the part2-db image tagged as db to my Docker Hub repository.
-
 The screenshot below illustrates the successful upload of the images to Docker Hub:
 
-<img src="https://i.postimg.cc/ZqJSPbcb/Screenshot-2024-06-02-at-22-15-53.png" alt="Docker Hub images" width="600">
+[![Captura-de-ecr-2025-05-12-124421.png](https://i.postimg.cc/85XZXZc6/Captura-de-ecr-2025-05-12-124421.png)](https://postimg.cc/tZPdYthq)
 
 ## Working with volumes
 
-To verify that the database file was properly placed in the volume, I used the docker-compose exec command to access the running database container and manually transfer the required file:
+To verify that the database file was properly placed in the volume, I used the `docker-compose` exec command to access the running database container and manually transfer the required file:
 
 ```bash
 docker-compose exec db bash
 ```
 
-Within the container shell, I transferred the h2-1.4.200.jar file to the appropriate volume directory:
+Within the container shell, I transferred the `h2-1.4.200.jar` file to the appropriate volume directory:
 
 ```bash
 cp /usr/src/app/h2-1.4.200.jar /usr/src/data-backup
