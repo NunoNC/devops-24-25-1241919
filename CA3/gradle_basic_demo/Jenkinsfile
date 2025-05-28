@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo 'Checking out from repository'
-                git branch: 'main', url: 'https://github.com/NunoNC/devops-24-25-1241919.git'
+                git branch: 'master', url: 'https://github.com/NunoNC/devops-24-25-1241919.git'
             }
         }
         stage('Assemble') {
