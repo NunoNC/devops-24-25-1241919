@@ -3,85 +3,80 @@ pipeline {
 
     environment {
         DOCKER_CREDENTIALS_ID = 'docker-credentials'
-        DOCKER_IMAGE = "nunonelascruz/jenkins-image"
-        DOCKER_REGISTRY = "https://index.docker.io/v1/"
-        REPO_URL = 'https://github.com/NunoNC/devops-24-25-1241919.git'
-        DOCKER_HOST = 'tcp://host.docker.internal:2375'
+        DOCKER_IMAGE          = 'nunonelascruz/springboot-app'
+        DOCKER_REGISTRY       = 'https://index.docker.io/v1/'
+        REPO_URL              = 'https://github.com/NunoNC/devops-24-25-1241919.git'
+        DOCKER_HOST           = 'tcp://host.docker.internal:2375'
     }
 
     stages {
         stage('Checkout') {
             steps {
-                echo 'Checking out from repository...'
-                git branch: 'master', url: env.REPO_URL
+                git branch: 'main', url: env.REPO_URL
             }
         }
+
         stage('Create Dockerfile') {
             steps {
                 dir('CA1/part3/react-and-spring-data-rest-basic') {
-                    echo 'Creating Dockerfile...'
-                    script {
-                        writeFile file: 'Dockerfile', text: '''
-                        # Use the official OpenJDK image as a parent image
-                        FROM openjdk:17-jdk-alpine
-
-                        # Set the working directory in the container
-                        WORKDIR /app
-
-                        # Copy the JAR file from the host to the container
-                        COPY build/libs/*.jar app.jar
-
-                        # Expose the port that the application will run on
-                        EXPOSE 8080
-
-                        # Run the JAR file
-                        ENTRYPOINT ["java", "-jar", "app.jar"]
-                        '''
-                    }
+                    writeFile file: 'Dockerfile', text: '''\
+FROM eclipse-temurin:17-jdk
+WORKDIR /app
+COPY build/libs/*.jar app.jar
+EXPOSE 8080
+ENTRYPOINT ["java","-jar","app.jar"]
+'''
                 }
             }
         }
+
         stage('Assemble') {
             steps {
                 dir('CA1/part3/react-and-spring-data-rest-basic') {
-                    echo 'Assembling...'
                     sh 'chmod +x gradlew'
                     sh './gradlew clean assemble'
                 }
             }
         }
+
         stage('Test') {
             steps {
                 dir('CA1/part3/react-and-spring-data-rest-basic') {
-                    echo 'Testing...'
                     sh './gradlew test'
                     junit '**/build/test-results/**/*.xml'
                 }
             }
         }
+
         stage('Javadoc') {
             steps {
                 dir('CA1/part3/react-and-spring-data-rest-basic') {
-                    echo 'Generating Javadoc...'
                     sh './gradlew javadoc'
-                    publishHTML([allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'build/docs/javadoc', reportFiles: 'index.html', reportName: 'Javadoc'])
+                    publishHTML(target: [
+                        allowMissing: false,
+                        alwaysLinkToLastBuild: true,
+                        keepAll: true,
+                        reportDir: 'build/docs/javadoc',
+                        reportFiles: 'index.html',
+                        reportName: 'Javadoc'
+                    ])
                 }
             }
         }
+
         stage('Archive') {
             steps {
                 dir('CA1/part3/react-and-spring-data-rest-basic') {
-                    echo 'Archiving...'
-                    archiveArtifacts artifacts: 'build/libs/*.jar', allowEmptyArchive: true
+                    archiveArtifacts artifacts: 'build/libs/*.jar', fingerprint: true
                 }
             }
         }
+
         stage('Build Docker Image') {
             steps {
                 dir('CA1/part3/react-and-spring-data-rest-basic') {
-                    echo 'Building Docker Image...'
                     script {
-                        def app = docker.build("${env.DOCKER_IMAGE}:${env.BUILD_ID}", '.')
+                        def app = docker.build("${env.DOCKER_IMAGE}:${env.BUILD_NUMBER}")
                         docker.withRegistry(env.DOCKER_REGISTRY, env.DOCKER_CREDENTIALS_ID) {
                             app.push()
                         }
