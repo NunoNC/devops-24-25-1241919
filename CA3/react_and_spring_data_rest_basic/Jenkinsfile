@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_CREDENTIALS_ID = 'docker-credentials'
-        DOCKER_IMAGE          = 'nunonelascruz/springboot-app'
+        DOCKER_IMAGE          = 'nunonelascruz/jenkins-image'
         DOCKER_REGISTRY       = 'https://index.docker.io/v1/'
         REPO_URL              = 'https://github.com/NunoNC/devops-24-25-1241919.git'
         DOCKER_HOST           = 'tcp://host.docker.internal:2375'
