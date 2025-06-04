@@ -162,7 +162,7 @@ pipeline {
     * In Jenkins: **New Item → Pipeline**
     * Under **Pipeline → Definition**, select **Pipeline script from SCM**.
     * Choose **Git**, branch `master`.
-    * Set **Script Path** to `CA1/part2/gradle_basic_demo/Jenkinsfile`.
+    * Set **Script Path** to `CA3/gradle_basic_demo/Jenkinsfile`.
 
 2. **Build**
     * Click **Build Now** while monitoring the console output for every stage.
@@ -329,7 +329,7 @@ By mounting the host’s Docker socket into the container (`-v /var/run/docker.s
 3. **Create Pipeline Job**
     * New Item → Pipeline
     * Definition: Pipeline script sourced from SCM → Git → repository URL with branch set to `main`.
-    * Script Path: `CA1/part3/react-and-spring-data-rest-basic/Jenkinsfile`
+    * Script Path: `CA3/react-and-spring-data-rest-basic/Jenkinsfile`
 
 4. **Run & Verify**
     * Click **Build Now**, monitor every stage through the console output.
