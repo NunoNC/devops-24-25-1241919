@@ -328,7 +328,7 @@ By mounting the host’s Docker socket into the container (`-v /var/run/docker.s
    
 3. **Create Pipeline Job**
     * New Item → Pipeline
-    * Definition: Pipeline script sourced from SCM → Git → repository URL with branch set to `main`.
+    * Definition: Pipeline script sourced from SCM → Git → repository URL with branch set to `master`.
     * Script Path: `CA3/react-and-spring-data-rest-basic/Jenkinsfile`
 
 4. **Run & Verify**
